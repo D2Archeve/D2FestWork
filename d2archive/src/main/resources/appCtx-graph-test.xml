@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:neo4j="http://www.springframework.org/schema/data/neo4j"
+	xsi:schemaLocation="
+  http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  http://www.springframework.org/schema/context 
+  http://www.springframework.org/schema/context/spring-context-3.0.xsd
+  http://www.springframework.org/schema/tx 
+  http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+  http://www.springframework.org/schema/data/neo4j
+  http://www.springframework.org/schema/data/neo4j/spring-neo4j-2.0.xsd">
+
+	<context:component-scan base-package="org.vizendtown" />
+	<context:spring-configured />
+ 	<context:annotation-config />
+
+	<bean id="graphDatabaseService" class="org.neo4j.kernel.EmbeddedGraphDatabase"
+		destroy-method="shutdown">
+		<constructor-arg index="0" value="target/config-test" />
+		<constructor-arg index="1">
+			<map>
+				<entry key="node_auto_indexing" value="true"/>
+				<entry key="relationship_auto_indexing" value="true"/>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<neo4j:config graphDatabaseService="graphDatabaseService" />
+
+</beans>

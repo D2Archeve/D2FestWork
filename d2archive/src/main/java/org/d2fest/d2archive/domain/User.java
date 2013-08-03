@@ -1,7 +1,5 @@
 package org.d2fest.d2archive.domain;
 
-import java.util.Date;
-
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
